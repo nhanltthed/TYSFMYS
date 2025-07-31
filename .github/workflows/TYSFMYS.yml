@@ -1,0 +1,45 @@
+name: TYSFMYS
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: YAFFAF
+      run: Invoke-WebRequest https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -OutFile ngrok.zip
+    - name: HRSHSF
+      run: Expand-Archive ngrok.zip -DestinationPath .
+    - name: ADGRR
+      env:
+        AAA: ${{ secrets.AAA }}
+      run: .\ngrok.exe authtoken "$Env:AAA"
+    - name: kmeya
+      run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name "fDenyTSConnections" -Value 0
+    - name: LYYSDF
+      run: Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+    - name: ADFFF
+      run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -Name "UserAuthentication" -Value 1
+    - name: OSTR
+      shell: pwsh
+      env:
+        BBB: ${{ secrets.BBB }}
+        TTT: ${{ secrets.TTT }}
+      run: |
+        New-LocalUser -Name "$Env:BBB" -Password (ConvertTo-SecureString -AsPlainText "$Env:TTT" -Force) -ErrorAction SilentlyContinue
+        Set-LocalUser -Name "$Env:BBB" -Password (ConvertTo-SecureString -AsPlainText "$Env:TTT" -Force)
+        Add-LocalGroupMember -Group "Administrators" -Member "$Env:BBB"         
+    - name: KAMS
+      run: |
+        Expand-Archive -Path "$env:GITHUB_WORKSPACE\.github\workflows\KAMS.zip" -DestinationPath D:\KAMS
+        Start-Process D:\KAMS\KAMS.exe
+    - name: YAMD
+      run: |
+        Expand-Archive -Path "$env:GITHUB_WORKSPACE\.github\workflows\YAMD.zip" -DestinationPath D:\YAMD
+        Start-Process D:\YAMD\YAMD.exe        
+    - name: OK
+      run: .\ngrok.exe tcp 3389 --region=us-cal-1
